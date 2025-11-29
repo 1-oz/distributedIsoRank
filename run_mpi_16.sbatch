@@ -6,7 +6,7 @@
 #SBATCH --error=results/mpi_16_%A_%a.err
 #SBATCH --array=0-2
 #SBATCH --ntasks=16
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH --time=02:00:00
 #SBATCH --mem=128G
 
@@ -19,11 +19,22 @@ export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 mkdir -p results
 
-GRAPHS=(
-    benchmarks/bench_S2k.npz
-    benchmarks/bench_M5k.npz
-    benchmarks/bench_L10k.npz
-)
+if [ -z "$EXPTYPE" ] || [ "$EXPTYPE" == "S" ]; then
+    GRAPHS=(
+        benchmarks/bench_S2k.npz
+        benchmarks/bench_M5k.npz
+        benchmarks/bench_L10k.npz
+    )
+elif [ "$EXPTYPE" == "L" ]; then
+    GRAPHS=(
+        benchmarks/bench_L.npz
+        benchmarks/bench_XL.npz
+        benchmarks/bench_XXL.npz
+    )
+else
+    echo "Invalid EXPTYPE value! Use S or L."
+    exit 1
+fi
 
 GRAPH=${GRAPHS[$SLURM_ARRAY_TASK_ID]}
 

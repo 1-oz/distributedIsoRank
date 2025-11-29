@@ -1,13 +1,14 @@
 #!/bin/bash
 #SBATCH -A mpcs56430
+#SBATCH --partition=bigmem2
 #SBATCH --job-name=iso-mpi-hybrid-4
 #SBATCH --output=results/mpi_hybrid_4_%A_%a.out
 #SBATCH --error=results/mpi_hybrid_4_%A_%a.err
 #SBATCH --array=0-2
 #SBATCH --ntasks=4
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH --time=02:00:00
-#SBATCH --mem=32G
+#SBATCH --mem=128G
 
 module load intelmpi/2018.4.274+intel-18.0.5
 module load mpi4py/3.0.3+intelmpi-2018.4.274
@@ -18,14 +19,26 @@ export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 mkdir -p results
 
-GRAPHS=(
-    benchmarks/bench_S2k.npz
-    benchmarks/bench_M5k.npz
-    benchmarks/bench_L10k.npz
-)
+if [ -z "$EXPTYPE" ] || [ "$EXPTYPE" == "S" ]; then
+    GRAPHS=(
+        benchmarks/bench_S2k.npz
+        benchmarks/bench_M5k.npz
+        benchmarks/bench_L10k.npz
+    )
+elif [ "$EXPTYPE" == "L" ]; then
+    GRAPHS=(
+        benchmarks/bench_L.npz
+        benchmarks/bench_XL.npz
+        benchmarks/bench_XXL.npz
+    )
+else
+    echo "Invalid EXPTYPE value! Use S or L."
+    exit 1
+fi
+
 GRAPH=${GRAPHS[$SLURM_ARRAY_TASK_ID]}
 
-echo "[MPI-HYBRID-4] Running IsoRank on ${GRAPH}..."
+echo "[MPI-4][$EXPTYPE] Running IsoRank on ${GRAPH}..."
 
 mpirun -n 4 python isorank_mpi.py \
     --graph "${GRAPH}" \
@@ -34,4 +47,4 @@ mpirun -n 4 python isorank_mpi.py \
     --tol 1e-4 \
     --quiet
 
-echo "[MPI-HYBRID-4] Finished ${GRAPH} on $(hostname) at $(date)"
+echo "[MPI-4][$EXPTYPE] Finished ${GRAPH} on $(hostname) at $(date)"

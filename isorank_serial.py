@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
-
-import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-
 import argparse
 import time
 import numpy as np
 from scipy.sparse import csr_matrix
 from utils import load_graph_pair
-
 
 def build_P(adj):
     """Column-normalized sparse matrix"""

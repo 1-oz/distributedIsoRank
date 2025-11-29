@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""
-Prepare Synthetic Benchmark Graph Pairs for IsoRank Experiments
-Author: Oz Zhou
-Date: 2025-11-29
-
-Generates multiple graph pairs with fixed seeds to ensure
-reproducibility across all serial / parallel / distributed runs.
-"""
-
 import argparse
 import numpy as np
 import networkx as nx
@@ -35,7 +26,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--outdir", type=str, default=".")
     parser.add_argument("--sets", type=str, nargs="+",
-                        default=["S2k", "M5k", "L10k"],
+                        default=["L", "XL", "XXL"],
                         help="Benchmark names to generate")
     args = parser.parse_args()
 
@@ -45,8 +36,9 @@ def main():
         "S2k": dict(n=2000, deg=6, seeds=(1, 2)),
         "M5k": dict(n=5000, deg=6, seeds=(3, 4)),
         "L10k": dict(n=10000, deg=6, seeds=(5, 6)),
-        # Optional: larger for distributed runs only
-        # "XL20k": dict(n=20000, deg=6, seeds=(7, 8)),
+        "L": dict(n=10000, deg=10, seeds=(5, 6)),
+        "XL": dict(n=20000, deg=10, seeds=(7, 8)),
+        "XXL": dict(n=50000, deg=10, seeds=(9, 10)),
     }
 
     print("\nPreparing benchmark graph pairs...\n")
@@ -56,7 +48,7 @@ def main():
         deg = conf["deg"]
         seed1, seed2 = conf["seeds"]
 
-        print(f"📌 Generating benchmark: {name}")
+        print(f"Generating benchmark: {name}")
         print(f" - Nodes: {n}")
         print(f" - Avg degree: {deg}")
         print(f" - Seeds: {seed1} & {seed2}")
