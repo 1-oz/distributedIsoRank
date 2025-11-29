@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH -A mpcs56430
+#SBATCH --partition=bigmem2
 #SBATCH --job-name=iso-mpi-8
 #SBATCH --output=results/mpi_8_%A_%a.out
 #SBATCH --error=results/mpi_8_%A_%a.err
