@@ -17,7 +17,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
-mkdir -p results
+RESULT_DIR="results/${EXPTYPE}"
+mkdir -p "$RESULT_DIR"
 
 if [ -z "$EXPTYPE" ] || [ "$EXPTYPE" == "S" ]; then
     GRAPHS=(
@@ -46,5 +47,6 @@ mpirun -n 4 python isorank_mpi.py \
     --max_iter 30 \
     --tol 1e-4 \
     --quiet
-
+    > "${RESULT_DIR}/result_${EXPTYPE}_${SLURM_ARRAY_TASK_ID}.log"
+    
 echo "[MPI-4][$EXPTYPE] Finished ${GRAPH} on $(hostname) at $(date)"
