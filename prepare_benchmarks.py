@@ -41,6 +41,7 @@ def main():
 
     # Configurable benchmark suite
     benchmark_configs = {
+        "T500": dict(n=500, deg=4, seeds=(11, 12)),
         "S2k": dict(n=2000, deg=6, seeds=(1, 2)),
         "M5k": dict(n=5000, deg=6, seeds=(3, 4)),
         "L10k": dict(n=10000, deg=6, seeds=(5, 6)),
