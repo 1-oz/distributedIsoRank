@@ -5,7 +5,7 @@
 #SBATCH --error=results/mpi_w2_%A_%a.err
 #SBATCH --array=0-2
 #SBATCH --ntasks=2
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=4
 #SBATCH --time=02:00:00
 #SBATCH --mem=32G
 
@@ -13,7 +13,11 @@
 module load intelmpi/2018.4.274+intel-18.0.5
 module load mpi4py/3.0.3+intelmpi-2018.4.274
 
-mkdir -p results_mpi
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+mkdir -p results
 
 GRAPHS=(
     benchmarks/bench_S2k.npz
