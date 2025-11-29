@@ -1,0 +1,16 @@
+Running serial IsoRank on benchmarks/bench_L10k.npz ...
+
+Loading graphs from benchmarks/bench_L10k.npz ...
+Graph sizes: G1=10000, G2=10000
+Constructing P, Q ...
+Initializing E ...
+
+Running Serial IsoRank ...
+
+=== DONE ===
+Graph: benchmarks/bench_L10k.npz
+alpha=0.9
+Runtime: 299.38 s
+Iterations: 6
+
+Completed benchmarks/bench_L10k.npz on midway2-0017.rcc.local at Sat Nov 29 13:57:12 CST 2025
