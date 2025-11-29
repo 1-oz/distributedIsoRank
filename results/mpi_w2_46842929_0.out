@@ -4,7 +4,7 @@
 Graph: benchmarks/bench_S2k.npz
 alpha=0.9
 MPI world size: 2
-Runtime: 3.96 s
+Runtime: 1.89 s
 Iterations: 8
 
-[MPI-W2] Finished benchmarks/bench_S2k.npz on midway2-0017.rcc.local at Sat Nov 29 14:45:53 CST 2025
+[MPI-W2] Finished benchmarks/bench_S2k.npz on midway2-0017.rcc.local at Sat Nov 29 15:09:27 CST 2025

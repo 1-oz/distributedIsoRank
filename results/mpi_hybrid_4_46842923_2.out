@@ -1,0 +1,10 @@
+[MPI-HYBRID-4] Running IsoRank on benchmarks/bench_L10k.npz...
+
+=== MPI IsoRank DONE ===
+Graph: benchmarks/bench_L10k.npz
+alpha=0.9
+MPI world size: 4
+Runtime: 103.14 s
+Iterations: 6
+
+[MPI-HYBRID-4] Finished benchmarks/bench_L10k.npz on midway2-0156.rcc.local at Sat Nov 29 15:10:57 CST 2025

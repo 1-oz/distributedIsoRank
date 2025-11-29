@@ -4,7 +4,7 @@
 Graph: benchmarks/bench_L10k.npz
 alpha=0.9
 MPI world size: 2
-Runtime: 309.10 s
+Runtime: 107.84 s
 Iterations: 6
 
-[MPI-W2] Finished benchmarks/bench_L10k.npz on midway2-0146.rcc.local at Sat Nov 29 14:51:01 CST 2025
+[MPI-W2] Finished benchmarks/bench_L10k.npz on midway2-0161.rcc.local at Sat Nov 29 15:11:16 CST 2025

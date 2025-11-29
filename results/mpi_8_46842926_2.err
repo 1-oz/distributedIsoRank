@@ -1,0 +1,7 @@
+srun: error: midway2-0026: task 0: Out Of Memory
+slurmstepd-midway2-0026: error: Detected 1 oom_kill event in StepId=46842926.0. Some of the step tasks have been OOM Killed.
+[mpiexec@midway2-0026.rcc.local] HYDT_bscu_wait_for_completion (../../tools/bootstrap/utils/bscu_wait.c:151): one of the processes terminated badly; aborting
+[mpiexec@midway2-0026.rcc.local] HYDT_bsci_wait_for_completion (../../tools/bootstrap/src/bsci_wait.c:36): launcher returned error waiting for completion
+[mpiexec@midway2-0026.rcc.local] HYD_pmci_wait_for_completion (../../pm/pmiserv/pmiserv_pmci.c:540): launcher returned error waiting for completion
+[mpiexec@midway2-0026.rcc.local] main (../../ui/mpich/mpiexec.c:1157): process manager error waiting for completion
+slurmstepd-midway2-0026: error: Detected 1 oom_kill event in StepId=46842926.batch. Some of the step tasks have been OOM Killed.
