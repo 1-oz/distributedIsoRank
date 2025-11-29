@@ -186,7 +186,6 @@ def main():
         verbose=(not args.quiet)
     )
 
-    # 只在 rank 0 打印结果
     if rank == 0:
         print("\n=== MPI IsoRank DONE ===")
         print(f"Graph: {args.graph}")
