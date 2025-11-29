@@ -22,7 +22,7 @@ GRAPHS=(
 GRAPH="${GRAPHS[$SLURM_ARRAY_TASK_ID]}"
 
 echo "Running serial IsoRank on $GRAPH ..."
-python isorank_serial.py \
+python3 isorank_serial.py \
     --graph "$GRAPH" \
     --alpha 0.9 \
     --max_iter 30 \
