@@ -9,12 +9,6 @@ Run with e.g.:
             --graph benchmarks/bench_S2k.npz \
             --alpha 0.9 --max_iter 20 --tol 1e-4 --quiet
 """
-
-import os
-os.environ.setdefault("OMP_NUM_THREADS", "1")
-os.environ.setdefault("MKL_NUM_THREADS", "1")
-os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
-
 import argparse
 import time
 import numpy as np
