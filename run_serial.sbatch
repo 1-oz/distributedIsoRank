@@ -14,9 +14,9 @@ module load python/3.9.18
 mkdir -p results
 
 GRAPHS=(
-    benchmarks/bench_T500.npz
     benchmarks/bench_S2k.npz
     benchmarks/bench_M5k.npz
+    benchmarks/bench_L10k.npz
 )
 
 GRAPH="${GRAPHS[$SLURM_ARRAY_TASK_ID]}"
