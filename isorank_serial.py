@@ -12,7 +12,7 @@ from scipy.sparse import csr_matrix
 from utils import load_graph_pair
 
 
-def build_P(adj: csr_matrix):
+def build_P(adj):
     """Column-normalized sparse matrix"""
     degrees = np.array(adj.sum(axis=0)).flatten()
     degrees[degrees == 0] = 1.0
@@ -88,7 +88,7 @@ def main():
     print("Constructing P, Q ...")
     P = build_P(A1)
     Q = build_P(A2)
-    Q_dense = Q.toarray()      # <<<<< FIX CORE HERE
+    Q_dense = Q.toarray()
 
     print("Initializing E ...")
     E = build_synthetic_E(n1, n2, seed=args.seed, diag_strength=args.diag)
