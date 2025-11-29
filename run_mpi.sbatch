@@ -9,8 +9,9 @@
 #SBATCH --time=02:00:00
 #SBATCH --mem=32G
 
-module load python/3.9.18
-module load openmpi
+
+module load intelmpi/2018.4.274+intel-18.0.5
+module load mpi4py/3.0.3+intelmpi-2018.4.274
 
 mkdir -p results_mpi
 
@@ -22,13 +23,13 @@ GRAPHS=(
 
 GRAPH=${GRAPHS[$SLURM_ARRAY_TASK_ID]}
 
-echo "[MPI-W2] Running IsoRank on $GRAPH..."
+echo "[MPI-W2] Running IsoRank on ${GRAPH}..."
 
-srun python3 isorank_mpi.py \
-    --graph "$GRAPH" \
+mpirun python isorank_mpi.py \
+    --graph "${GRAPH}" \
     --alpha 0.9 \
     --max_iter 30 \
     --tol 1e-4 \
     --quiet
 
-echo "[MPI-W2] Completed $GRAPH on $(hostname) at $(date)"
+echo "[MPI-W2] Finished ${GRAPH} on $(hostname) at $(date)"
