@@ -7,7 +7,7 @@
 #SBATCH --ntasks=16
 #SBATCH --cpus-per-task=4
 #SBATCH --time=02:00:00
-#SBATCH --mem=128G
+#SBATCH --mem=64G
 
 module load intelmpi/2018.4.274+intel-18.0.5
 module load mpi4py/3.0.3+intelmpi-2018.4.274
