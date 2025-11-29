@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/jijiaz/gitrepo/distributedIsoRank/isorank_mpi.py", line 21, in <module>
+  File "/home/jijiaz/gitrepo/distributedIsoRank/isorank_mpi.py", line 21, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+srun: error: midway2-0268: tasks 0-1: Exited with exit code 1
