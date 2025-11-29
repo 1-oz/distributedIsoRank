@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH -A mpcs56430
+#SBATCH --partition=bigmem2
 #SBATCH --job-name=iso-mpi-16
 #SBATCH --output=results/mpi_16_%A_%a.out
 #SBATCH --error=results/mpi_16_%A_%a.err
@@ -7,7 +8,7 @@
 #SBATCH --ntasks=16
 #SBATCH --cpus-per-task=4
 #SBATCH --time=02:00:00
-#SBATCH --mem=64G
+#SBATCH --mem=128G
 
 module load intelmpi/2018.4.274+intel-18.0.5
 module load mpi4py/3.0.3+intelmpi-2018.4.274
