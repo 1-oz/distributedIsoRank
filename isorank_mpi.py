@@ -58,8 +58,8 @@ def isorank_mpi(P, Q_dense, E, alpha, comm,
     row_start, row_end = compute_row_range(n1, world_size, rank)
     n_local = row_end - row_start
 
-    P_block = P[row_start:row_end, :]     # (n_local x n1) 稀疏
-    E_block = E[row_start:row_end, :]     # (n_local x n2) 稠密
+    P_block = P[row_start:row_end, :]
+    E_block = E[row_start:row_end, :]
 
     R = E.copy()
     R_block = R[row_start:row_end, :]
@@ -172,8 +172,6 @@ def main():
         print("Initializing E ...")
 
     E = build_synthetic_E(n1, n2, seed=args.seed, diag_strength=args.diag)
-
-    # ----- 运行分布式 IsoRank -----
     if rank == 0 and not args.quiet:
         print("\nRunning IsoRank (MPI) ...")
 
@@ -193,6 +191,10 @@ def main():
         print(f"MPI world size: {world_size}")
         print(f"Runtime: {elapsed:.2f} s")
         print(f"Iterations: {iters}\n")
+    
+    save_path = f"R_results/mpi_R_{world_size}ranks.npy"
+    np.save(save_path, R)
+    print(f"[Saved] MPI result --> {save_path}")
 
 
 if __name__ == "__main__":

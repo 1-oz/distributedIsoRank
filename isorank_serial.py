@@ -46,7 +46,7 @@ def isorank(P, Q_dense, E, alpha, max_iter=20, tol=1e-4, verbose=True):
         # dense x dense (Q^T) --> dense
         R_new = R_new.dot(Q_dense.T)
 
-        # IsoRank update (fully dense now)
+        # IsoRank update
         R_new = alpha * R_new + (1 - alpha) * E
         R_new /= R_new.sum()
 
@@ -100,6 +100,10 @@ def main():
     print(f"alpha={args.alpha}")
     print(f"Runtime: {elapsed:.2f} s")
     print(f"Iterations: {iters}\n")
+
+    save_path = "R_results/serial_R.npy"
+    np.save(save_path, R)
+    print(f"[Saved] Serial result --> {save_path}")
 
 
 if __name__ == "__main__":
