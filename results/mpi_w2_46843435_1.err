@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "isorank_mpi.py", line 199, in <module>
+    main()
+  File "isorank_mpi.py", line 186, in main
+    verbose=(not args.quiet)
+  File "isorank_mpi.py", line 112, in isorank_mpi
+    blocks = comm.allgather(R_block_new)
+  File "mpi4py/MPI/Comm.pyx", line 1595, in mpi4py.MPI.Comm.allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 863, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 868, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 191, in mpi4py.MPI.pickle_allocv
+  File "mpi4py/MPI/msgpickle.pxi", line 182, in mpi4py.MPI.pickle_alloc
+SystemError: Negative size passed to PyBytes_FromStringAndSize
+Traceback (most recent call last):
+  File "isorank_mpi.py", line 199, in <module>
+    main()
+  File "isorank_mpi.py", line 186, in main
+    verbose=(not args.quiet)
+  File "isorank_mpi.py", line 112, in isorank_mpi
+    blocks = comm.allgather(R_block_new)
+  File "mpi4py/MPI/Comm.pyx", line 1595, in mpi4py.MPI.Comm.allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 863, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 868, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 191, in mpi4py.MPI.pickle_allocv
+  File "mpi4py/MPI/msgpickle.pxi", line 182, in mpi4py.MPI.pickle_alloc
+SystemError: Negative size passed to PyBytes_FromStringAndSize

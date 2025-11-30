@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "isorank_mpi.py", line 199, in <module>
+    main()
+  File "isorank_mpi.py", line 186, in main
+    verbose=(not args.quiet)
+  File "isorank_mpi.py", line 112, in isorank_mpi
+    blocks = comm.allgather(R_block_new)
+  File "mpi4py/MPI/Comm.pyx", line 1595, in mpi4py.MPI.Comm.allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 862, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 147, in mpi4py.MPI.pickle_dump
+  File "mpi4py/MPI/msgbuffer.pxi", line 50, in mpi4py.MPI.downcast
+OverflowError: integer 10000000167 does not fit in 'int'
+Traceback (most recent call last):
+  File "isorank_mpi.py", line 199, in <module>
+    main()
+  File "isorank_mpi.py", line 186, in main
+    verbose=(not args.quiet)
+  File "isorank_mpi.py", line 112, in isorank_mpi
+    blocks = comm.allgather(R_block_new)
+  File "mpi4py/MPI/Comm.pyx", line 1595, in mpi4py.MPI.Comm.allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 862, in mpi4py.MPI.PyMPI_allgather
+  File "mpi4py/MPI/msgpickle.pxi", line 147, in mpi4py.MPI.pickle_dump
+  File "mpi4py/MPI/msgbuffer.pxi", line 50, in mpi4py.MPI.downcast
+OverflowError: integer 10000000167 does not fit in 'int'

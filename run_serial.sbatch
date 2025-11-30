@@ -10,6 +10,7 @@
 #SBATCH --time=03:00:00
 #SBATCH --mem=128G
 
+module load python/3.9.18
 
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK

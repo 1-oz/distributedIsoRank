@@ -1,0 +1,16 @@
+Running SERIAL OpenMP-Accelerated IsoRank on benchmarks/bench_XL.npz ...
+
+Loading graphs from benchmarks/bench_XL.npz ...
+Graph sizes: G1=20000, G2=20000
+Constructing P, Q ...
+Initializing E ...
+
+Running Serial IsoRank ...
+
+=== DONE ===
+Graph: benchmarks/bench_XL.npz
+alpha=0.9
+Runtime: 467.69 s
+Iterations: 4
+
+Finished SERIAL OpenMP-Accelerated IsoRank on midway2-bigmem03.rcc.local at Sat Nov 29 17:15:48 CST 2025

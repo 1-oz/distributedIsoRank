@@ -8,7 +8,7 @@
 #SBATCH --ntasks=2
 #SBATCH --cpus-per-task=8
 #SBATCH --time=02:00:00
-#SBATCH --mem=128G
+#SBATCH --mem=400G
 
 
 module load intelmpi/2018.4.274+intel-18.0.5
