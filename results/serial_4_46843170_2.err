@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "isorank_serial.py", line 4, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
