@@ -31,6 +31,7 @@ Graph sizes:
 ---
 
 ##  Run Serial IsoRank
+export EXPTYPE=S
 sbatch run_serial.sbatch
 
 Output:
@@ -41,6 +42,7 @@ R_results/serial_R.npy
 ##  Run Distributed MPI IsoRank
 
 Example: 4 ranks
+export EXPTYPE=S
 sbatch run_mpi_4.sbatch
 
 Output:
