@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-Distributed IsoRank using MPI (row-block parallelism)
-Author: Oz Zhou
-
-Run with e.g.:
-    srun -A mpcs56430 -p short -n 4 --time=00:10:00 \
-        python isorank_mpi.py \
-            --graph benchmarks/bench_S2k.npz \
-            --alpha 0.9 --max_iter 20 --tol 1e-4 --quiet
-"""
 import argparse
 import time
 import numpy as np
@@ -71,52 +61,31 @@ def isorank_mpi(P, Q_dense, E, alpha, comm,
     start_time = time.time()
 
     for k in range(max_iter):
-        # ----------------------------------------------------
-        # Step 1: 所有 rank 计算 B = R Q^T （dense x dense）
-        # ----------------------------------------------------
-        # B: (n1 x n2)
         B = R.dot(Q_dense.T)
 
-        # ----------------------------------------------------
-        # Step 2: 每个 rank 只用自己的 P_block 计算局部块：
-        #         R_block_new = P_block * B
-        # ----------------------------------------------------
-        R_block_new = P_block.dot(B)          # (n_local x n2)
-        R_block_new = np.array(R_block_new)   # 确保是 ndarray
+        R_block_new = P_block.dot(B) 
+        R_block_new = np.array(R_block_new)
 
-        # ----------------------------------------------------
-        # Step 3: 本地块混入 E_block，得到：
-        #         R_block_new = alpha * R_block_new + (1-alpha) * E_block
-        # ----------------------------------------------------
+
         R_block_new = alpha * R_block_new + (1.0 - alpha) * E_block
-
-        # 归一化：需要整个 R_new 的全局和
         local_sum = R_block_new.sum()
         global_sum = comm.allreduce(local_sum, op=MPI.SUM)
         R_block_new /= global_sum
 
-        # ----------------------------------------------------
-        # Step 4: 计算全局 diff = ||R_new - R||_1
-        #         每个 rank 算自己块的 diff，再 allreduce
-        # ----------------------------------------------------
+
         local_diff = np.linalg.norm(R_block_new - R_block, 1)
         global_diff = comm.allreduce(local_diff, op=MPI.SUM)
 
         if rank == 0 and verbose:
             print(f"Iter {k:02d}: diff={global_diff:.4e}")
 
-        # ----------------------------------------------------
-        # Step 5: allgather 所有 rank 的 row-block，拼成完整 R_new
-        #         这样下一轮每个 rank 又有完整的 R
-        # ----------------------------------------------------
+
         blocks = comm.allgather(R_block_new)
         R_new_full = np.vstack(blocks)
 
-        # 收敛判断只在 rank 0 做，然后广播给所有 rank
         converged = (global_diff < tol)
         converged = comm.bcast(converged, root=0)
 
-        # 更新 R / R_block
         R = R_new_full
         R_block = R[row_start:row_end, :]
 
@@ -137,7 +106,6 @@ def main():
     rank = comm.Get_rank()
     world_size = comm.Get_size()
 
-    # 只在 rank 0 解析命令行参数，再广播给所有 rank
     if rank == 0:
         parser = argparse.ArgumentParser()
         parser.add_argument("--graph", type=str, required=True)
@@ -153,7 +121,6 @@ def main():
 
     args = comm.bcast(args, root=0)
 
-    # ----- 所有 rank 都加载图（为简单起见；规模在 10k 级别没问题） -----
     if rank == 0 and not args.quiet:
         print(f"\n[IsoRank-MPI] Loading graphs from {args.graph} ...")
     A1, _, A2, _ = load_graph_pair(args.graph)
@@ -185,7 +152,7 @@ def main():
     )
 
     if rank == 0:
-        print("\n=== MPI IsoRank DONE ===")
+        print("\n MPI IsoRank DONE")
         print(f"Graph: {args.graph}")
         print(f"alpha={args.alpha}")
         print(f"MPI world size: {world_size}")

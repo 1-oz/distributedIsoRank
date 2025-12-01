@@ -47,6 +47,5 @@ mpirun -n 4 python isorank_mpi.py \
     --max_iter 30 \
     --tol 1e-4 \
     --quiet
-    > "${RESULT_DIR}/result_${EXPTYPE}_${SLURM_ARRAY_TASK_ID}.log"
-    
+
 echo "[MPI-4][$EXPTYPE] Finished ${GRAPH} on $(hostname) at $(date)"

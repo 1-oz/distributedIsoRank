@@ -45,6 +45,5 @@ python3 isorank_serial.py \
     --max_iter 30 \
     --tol 1e-4 \
     --quiet
-    > "${RESULT_DIR}/result_${EXPTYPE}_${SLURM_ARRAY_TASK_ID}.log"
 
 echo "Finished SERIAL OpenMP-Accelerated IsoRank on $(hostname) at $(date)"

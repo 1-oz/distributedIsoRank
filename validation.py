@@ -25,7 +25,7 @@ def validate(serial_path, mpi_path):
     top1_m = np.argmax(R_m, axis=1)
     top1_match = np.mean(top1_s == top1_m)
 
-    # probability checks 
+    # probability checks
     sum_check = np.abs(R_m.sum() - 1.0)
     min_check = R_m.min()
 

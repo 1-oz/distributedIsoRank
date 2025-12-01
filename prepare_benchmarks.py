@@ -30,15 +30,14 @@ def main():
                         help="Benchmark names to generate")
     args = parser.parse_args()
 
-    # Configurable benchmark suite
     benchmark_configs = {
         "T500": dict(n=500, deg=4, seeds=(11, 12)),
         "S2k": dict(n=2000, deg=6, seeds=(1, 2)),
         "M5k": dict(n=5000, deg=6, seeds=(3, 4)),
         "L10k": dict(n=10000, deg=6, seeds=(5, 6)),
-        "L": dict(n=10000, deg=10, seeds=(5, 6)),
-        "XL": dict(n=20000, deg=10, seeds=(7, 8)),
-        "XXL": dict(n=50000, deg=10, seeds=(9, 10)),
+        #"L": dict(n=10000, deg=10, seeds=(5, 6)),
+        #"XL": dict(n=20000, deg=10, seeds=(7, 8)),
+        #"XXL": dict(n=50000, deg=10, seeds=(9, 10)),
     }
 
     print("\nPreparing benchmark graph pairs...\n")
@@ -53,7 +52,6 @@ def main():
         print(f" - Avg degree: {deg}")
         print(f" - Seeds: {seed1} & {seed2}")
 
-        # BA graph = scale-free, closer to real PPI structure
         G1 = generate_graph(n, deg, model="ba", seed=seed1)
         G2 = generate_graph(n, deg, model="ba", seed=seed2)
 
@@ -63,7 +61,7 @@ def main():
         prefix = f"{args.outdir}/bench_{name}"
         save_graph_pair(prefix, A1, A2, d1, d2)
 
-    print("\n=== Benchmark graph suite generated successfully! ===\n")
+    print("\n Benchmark graph suite generated.")
 
 
 if __name__ == "__main__":

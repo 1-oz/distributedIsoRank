@@ -95,7 +95,7 @@ def main():
         verbose=not args.quiet
     )
 
-    print("\n=== DONE ===")
+    print("\nDONE")
     print(f"Graph: {args.graph}")
     print(f"alpha={args.alpha}")
     print(f"Runtime: {elapsed:.2f} s")
